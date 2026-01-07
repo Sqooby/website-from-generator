@@ -5,235 +5,256 @@
 ### Main Navigation Pages
 
 #### 1. **Homepage (Strona Główna)**
-   - **URL:** `/`
-   - **Sections:**
-     - Hero section with value proposition
-     - "How it works" (3-step process)
-     - Featured templates showcase
-     - Pricing comparison
-     - Customer testimonials
-     - FAQ highlights
-     - CTA (Call to Action) buttons
+
+- **URL:** `/`
+- **Sections:**
+  - Hero section with value proposition
+  - "How it works" (3-step process)
+  - Featured templates showcase
+  - Pricing comparison
+  - Customer testimonials
+  - FAQ highlights
+  - CTA (Call to Action) buttons
 
 #### 2. **Templates Gallery (Wzory)**
-   - **URL:** `/wzory` or `/templates`
-   - **Content:**
-     - Filterable template grid
-     - Categories:
-       - Klasyczna Elegancja (Classic Elegance)
-       - Kwiatowa Fantazja (Floral Fantasy)
-       - Nocny Blask (Night Glow)
-       - Nowoczesny Minimalizm (Modern Minimalism)
-       - Rustykalna Finezja (Rustic Finesse)
-     - Template preview cards
-     - "View Demo" buttons
-     - "Use This Template" buttons
+
+- **URL:** `/wzory` or `/templates`
+- **Content:**
+  - Filterable template grid
+  - Categories:
+    - Klasyczna Elegancja (Classic Elegance)
+    - Kwiatowa Fantazja (Floral Fantasy)
+    - Nocny Blask (Night Glow)
+    - Nowoczesny Minimalizm (Modern Minimalism)
+    - Rustykalna Finezja (Rustic Finesse)
+  - Template preview cards
+  - "View Demo" buttons
+  - "Use This Template" buttons
 
 #### 3. **Pricing (Cennik)**
-   - **URL:** `/cennik` or `/pricing`
-   - **Content:**
-     - Three pricing tiers:
-       1. **Basic Wedding Page (250 PLN/year)**
-          - Wedding information display
-          - Countdown timer
-          - Basic customization
-       2. **Page + Thank You (325 PLN/year)**
-          - Everything in Basic
-          - RSVP forms
-          - Thank you messages
-       3. **Premium E-Wedding (400 PLN/year)**
-          - Everything in Standard
-          - Photo gallery
-          - Interactive timeline
-          - Priority support
-     - Feature comparison table
-     - Annual subscription model
-     - Payment methods accepted
+
+- **URL:** `/cennik` or `/pricing`
+- **Content:**
+  - Three pricing tiers:
+    1.  **Basic Wedding Page (250 PLN/year)**
+        - Wedding information display
+        - Countdown timer
+        - Basic customization
+    2.  **Page + Thank You (325 PLN/year)**
+        - Everything in Basic
+        - RSVP forms
+        - Thank you messages
+    3.  **Premium E-Wedding (400 PLN/year)**
+        - Everything in Standard
+        - Photo gallery
+        - Interactive timeline
+        - Priority support
+  - Feature comparison table
+  - Annual subscription model
+  - Payment methods accepted
 
 #### 4. **Offer/Features (Oferta)**
-   - **URL:** `/oferta` or `/features`
-   - **Detailed feature explanations:**
-     - Website customization capabilities
-     - RSVP system functionality
-     - Guest management
-     - Photo gallery
-     - Timeline/Story section
-     - Countdown timer
-     - Maps & directions
-     - Thank you cards
-     - Mobile responsiveness
-     - Custom domains
-     - Email notifications
+
+- **URL:** `/oferta` or `/features`
+- **Detailed feature explanations:**
+  - Website customization capabilities
+  - RSVP system functionality
+  - Guest management
+  - Photo gallery
+  - Timeline/Story section
+  - Countdown timer
+  - Maps & directions
+  - Thank you cards
+  - Mobile responsiveness
+  - Custom domains
+  - Email notifications
 
 #### 5. **Help & FAQ (Pomoc i FAQ)**
-   - **URL:** `/pomoc` or `/faq`
-   - **Sections:**
-     - Getting started guide
-     - Common questions:
-       - How to create a website?
-       - How to customize template?
-       - How to add guests?
-       - How does RSVP work?
-       - Can I use my own domain?
-       - How to add photos?
-       - What happens after subscription expires?
-     - Video tutorials (optional)
-     - Contact support
+
+- **URL:** `/pomoc` or `/faq`
+- **Sections:**
+  - Getting started guide
+  - Common questions:
+    - How to create a website?
+    - How to customize template?
+    - How to add guests?
+    - How does RSVP work?
+    - Can I use my own domain?
+    - How to add photos?
+    - What happens after subscription expires?
+  - Video tutorials (optional)
+  - Contact support
 
 #### 6. **About Us (O Nas)**
-   - **URL:** `/o-nas` or `/about`
-   - **Content:**
-     - Company story
-     - Mission statement
-     - Why we created this service
-     - Team introduction (optional)
-     - Media mentions
+
+- **URL:** `/o-nas` or `/about`
+- **Content:**
+  - Company story
+  - Mission statement
+  - Why we created this service
+  - Team introduction (optional)
+  - Media mentions
 
 #### 7. **Contact (Kontakt)**
-   - **URL:** `/kontakt` or `/contact`
-   - **Content:**
-     - Contact form
-     - Email address
-     - Phone number (optional)
-     - Business hours
-     - Social media links
+
+- **URL:** `/kontakt` or `/contact`
+- **Content:**
+  - Contact form
+  - Email address
+  - Phone number (optional)
+  - Business hours
+  - Social media links
 
 #### 8. **Blog (Optional)**
-   - **URL:** `/blog`
-   - **Content:**
-     - Wedding planning tips
-     - Template inspiration
-     - Customer stories
-     - Feature announcements
-     - SEO content
+
+- **URL:** `/blog`
+- **Content:**
+  - Wedding planning tips
+  - Template inspiration
+  - Customer stories
+  - Feature announcements
+  - SEO content
 
 ---
 
 ### User Account Pages (Authenticated)
 
 #### 9. **Login (Logowanie)**
-   - **URL:** `/login` or `/logowanie`
-   - **Features:**
-     - Email/password login
-     - "Forgot password" link
-     - Social login (Google, Facebook)
-     - "Don't have an account?" signup link
+
+- **URL:** `/login` or `/logowanie`
+- **Features:**
+  - Email/password login
+  - "Forgot password" link
+  - Social login (Google, Facebook)
+  - "Don't have an account?" signup link
 
 #### 10. **Register (Rejestracja)**
-   - **URL:** `/register` or `/rejestracja`
-   - **Form fields:**
-     - Email
-     - Password
-     - Confirm password
-     - Accept terms checkbox
-     - "Already have an account?" login link
+
+- **URL:** `/register` or `/rejestracja`
+- **Form fields:**
+  - Email
+  - Password
+  - Confirm password
+  - Accept terms checkbox
+  - "Already have an account?" login link
 
 #### 11. **Dashboard (Panel Użytkownika)**
-   - **URL:** `/dashboard`
-   - **Sections:**
-     - My Websites overview
-     - Active subscriptions status
-     - Quick actions:
-       - Create new website
-       - Edit existing website
-       - View published sites
-     - Account statistics
-     - Recent activity
+
+- **URL:** `/dashboard`
+- **Sections:**
+  - My Websites overview
+  - Active subscriptions status
+  - Quick actions:
+    - Create new website
+    - Edit existing website
+    - View published sites
+  - Account statistics
+  - Recent activity
 
 #### 12. **My Websites (Moje Strony)**
-   - **URL:** `/dashboard/websites`
-   - **Content:**
-     - List of created wedding websites
-     - Status indicators (draft, published, expired)
-     - Quick actions per website:
-       - Edit
-       - Preview
-       - View analytics
-       - Delete
-     - "Create New Website" button
+
+- **URL:** `/dashboard/websites`
+- **Content:**
+  - List of created wedding websites
+  - Status indicators (draft, published, expired)
+  - Quick actions per website:
+    - Edit
+    - Preview
+    - View analytics
+    - Delete
+  - "Create New Website" button
 
 #### 13. **Website Editor (Edytor Strony)**
-   - **URL:** `/dashboard/websites/[id]/edit`
-   - **Sections:**
-     - **Content Tab:**
-       - Couple information
-       - Wedding date & time
-       - Venue details
-       - Story/timeline
-       - RSVP settings
-     - **Design Tab:**
-       - Template selection
-       - Color customization
-       - Font selection
-       - Section visibility
-     - **Media Tab:**
-       - Photo uploads
-       - Gallery management
-     - **Settings Tab:**
-       - Domain settings
-       - Privacy options
-       - Notification preferences
-     - Live preview pane
+
+- **URL:** `/dashboard/websites/[id]/edit`
+- **Sections:**
+  - **Content Tab:**
+    - Couple information
+    - Wedding date & time
+    - Venue details
+    - Story/timeline
+    - RSVP settings
+  - **Design Tab:**
+    - Template selection
+    - Color customization
+    - Font selection
+    - Section visibility
+  - **Media Tab:**
+    - Photo uploads
+    - Gallery management
+  - **Settings Tab:**
+    - Domain settings
+    - Privacy options
+    - Notification preferences
+  - Live preview pane
 
 #### 14. **Guest Management (Zarządzanie Gośćmi)**
-   - **URL:** `/dashboard/websites/[id]/guests`
-   - **Features:**
-     - Guest list
-     - RSVP responses
-     - Attendance tracking
-     - Dietary requirements
-     - Plus-ones
-     - Send invitations
-     - Export guest list (CSV)
+
+- **URL:** `/dashboard/websites/[id]/guests`
+- **Features:**
+  - Guest list
+  - RSVP responses
+  - Attendance tracking
+  - Dietary requirements
+  - Plus-ones
+  - Send invitations
+  - Export guest list (CSV)
 
 #### 15. **Analytics (Statystyki)**
-   - **URL:** `/dashboard/websites/[id]/analytics`
-   - **Metrics:**
-     - Page views
-     - Unique visitors
-     - RSVP response rate
-     - Most viewed sections
-     - Traffic sources
-     - Device breakdown (mobile/desktop)
+
+- **URL:** `/dashboard/websites/[id]/analytics`
+- **Metrics:**
+  - Page views
+  - Unique visitors
+  - RSVP response rate
+  - Most viewed sections
+  - Traffic sources
+  - Device breakdown (mobile/desktop)
 
 #### 16. **Subscription Management (Subskrypcja)**
-   - **URL:** `/dashboard/subscription`
-   - **Content:**
-     - Current plan details
-     - Expiration date
-     - Renewal options
-     - Upgrade/downgrade
-     - Payment history
-     - Invoices download
+
+- **URL:** `/dashboard/subscription`
+- **Content:**
+  - Current plan details
+  - Expiration date
+  - Renewal options
+  - Upgrade/downgrade
+  - Payment history
+  - Invoices download
 
 #### 17. **Account Settings (Ustawienia Konta)**
-   - **URL:** `/dashboard/settings`
-   - **Sections:**
-     - Profile information
-     - Change email
-     - Change password
-     - Notification preferences
-     - Delete account
+
+- **URL:** `/dashboard/settings`
+- **Sections:**
+  - Profile information
+  - Change email
+  - Change password
+  - Notification preferences
+  - Delete account
 
 ---
 
 ### Legal & Footer Pages
 
 #### 18. **Terms of Service (Regulamin)**
-   - **URL:** `/regulamin` or `/terms`
-   - Legal terms and conditions
+
+- **URL:** `/regulamin` or `/terms`
+- Legal terms and conditions
 
 #### 19. **Privacy Policy (Polityka Prywatności)**
-   - **URL:** `/polityka-prywatnosci` or `/privacy`
-   - GDPR compliance, data handling
+
+- **URL:** `/polityka-prywatnosci` or `/privacy`
+- GDPR compliance, data handling
 
 #### 20. **Cookie Policy (Polityka Cookies)**
-   - **URL:** `/cookies`
-   - Cookie usage explanation
+
+- **URL:** `/cookies`
+- Cookie usage explanation
 
 #### 21. **Refund Policy (Zwroty i Reklamacje)**
-   - **URL:** `/zwroty` or `/refunds`
-   - Return and complaint procedures
+
+- **URL:** `/zwroty` or `/refunds`
+- Return and complaint procedures
 
 ---
 
@@ -242,25 +263,28 @@
 These are the pages that get generated for each couple:
 
 #### 22. **Wedding Homepage**
-   - **URL:** `john-mary.yourplatform.com` or custom domain
-   - **Sections:**
-     - Hero with couple names & date
-     - Countdown timer
-     - Our Story
-     - Event Details (ceremony & reception)
-     - RSVP Form
-     - Photo Gallery
-     - Travel & Accommodations
-     - FAQ
-     - Thank You / Footer
+
+- **URL:** `john-mary.yourplatform.com` or custom domain
+- **Sections:**
+  - Hero with couple names & date
+  - Countdown timer
+  - Our Story
+  - Event Details (ceremony & reception)
+  - RSVP Form
+  - Photo Gallery
+  - Travel & Accommodations
+  - FAQ
+  - Thank You / Footer
 
 #### 23. **RSVP Confirmation Page**
-   - **URL:** `/rsvp/success`
-   - Thank you message after RSVP submission
+
+- **URL:** `/rsvp/success`
+- Thank you message after RSVP submission
 
 #### 24. **Gallery Page (Optional)**
-   - **URL:** `/gallery`
-   - Full-screen photo gallery if separated from main page
+
+- **URL:** `/gallery`
+- Full-screen photo gallery if separated from main page
 
 ---
 
@@ -314,6 +338,7 @@ Main Website (yourplatform.com)
 ## Key Features Per Page Type
 
 ### Homepage Must-Haves
+
 - Clear value proposition
 - Visual template showcase
 - Simple 3-step "How it works"
@@ -322,6 +347,7 @@ Main Website (yourplatform.com)
 - Strong CTAs ("Create Your Wedding Website")
 
 ### Template Gallery Must-Haves
+
 - High-quality template thumbnails
 - Category filtering
 - Live preview functionality
@@ -329,6 +355,7 @@ Main Website (yourplatform.com)
 - "Use This Template" CTA
 
 ### Dashboard Must-Haves
+
 - Quick access to all websites
 - Clear status indicators
 - One-click edit/preview
@@ -336,6 +363,7 @@ Main Website (yourplatform.com)
 - Easy navigation
 
 ### Website Editor Must-Haves
+
 - Live preview
 - Auto-save
 - Undo/redo
@@ -343,6 +371,7 @@ Main Website (yourplatform.com)
 - Publish button (only after payment)
 
 ### Wedding Website Must-Haves
+
 - Fast loading
 - Mobile responsive
 - RSVP form functionality
@@ -354,6 +383,7 @@ Main Website (yourplatform.com)
 ## User Journey Flow
 
 ### New User Flow
+
 ```
 1. Land on Homepage
    ↓
@@ -379,6 +409,7 @@ Main Website (yourplatform.com)
 ```
 
 ### Returning User Flow
+
 ```
 1. Login
    ↓
@@ -392,6 +423,7 @@ Main Website (yourplatform.com)
 ```
 
 ### Guest Flow
+
 ```
 1. Receive Wedding Website URL
    ↓
@@ -409,6 +441,7 @@ Main Website (yourplatform.com)
 ## Recommended Page Priorities for Development
 
 ### Phase 1 (MVP)
+
 1. ✅ Homepage (simplified)
 2. ✅ Template Gallery (3 templates)
 3. ✅ Pricing Page
@@ -420,6 +453,7 @@ Main Website (yourplatform.com)
 9. ✅ Terms & Privacy
 
 ### Phase 2
+
 1. ✅ Advanced Editor (more customization)
 2. ✅ Guest Management
 3. ✅ Analytics
@@ -429,6 +463,7 @@ Main Website (yourplatform.com)
 7. ✅ 5 more templates
 
 ### Phase 3
+
 1. ✅ Blog
 2. ✅ About Us
 3. ✅ Advanced Features (custom domains)
@@ -441,16 +476,19 @@ Main Website (yourplatform.com)
 ## Navigation Structure Example
 
 ### Main Website Header
+
 ```
 Logo | Templates | Pricing | Features | Help | Blog | Login | Sign Up
 ```
 
 ### Dashboard Navigation
+
 ```
 Logo | My Websites | Analytics | Subscription | Settings | Logout
 ```
 
 ### Wedding Website Header (Guest View)
+
 ```
 [Couple Names] | Our Story | Event Details | RSVP | Gallery | Travel
 ```
@@ -459,55 +497,65 @@ Logo | My Websites | Analytics | Subscription | Settings | Logout
 
 ## Comparison: Your Platform vs Slubly.pl
 
-| Feature | Slubly.pl | Your Platform |
-|---------|-----------|---------------|
-| Templates | 5+ templates | Start with 3-5, expand to 10+ |
-| Pricing | 250-400 PLN/year | ~$99-249/year (adjust for market) |
-| RSVP System | ✅ Yes | ✅ Yes |
-| Photo Gallery | ✅ Premium only | ✅ Standard+ |
-| Custom Domains | ✅ Yes | ✅ Yes |
-| Timeline/Story | ✅ Premium only | ✅ Standard+ |
-| Mobile App | ❌ No | ❌ Future consideration |
-| Multi-language | Polish only | English + future languages |
+| Feature        | Slubly.pl        | Your Platform                     |
+| -------------- | ---------------- | --------------------------------- |
+| Templates      | 5+ templates     | Start with 3-5, expand to 10+     |
+| Pricing        | 250-400 PLN/year | ~$99-249/year (adjust for market) |
+| RSVP System    | ✅ Yes           | ✅ Yes                            |
+| Photo Gallery  | ✅ Premium only  | ✅ Standard+                      |
+| Custom Domains | ✅ Yes           | ✅ Yes                            |
+| Timeline/Story | ✅ Premium only  | ✅ Standard+                      |
+| Mobile App     | ❌ No            | ❌ Future consideration           |
+| Multi-language | Polish only      | English + future languages        |
 
 ---
 
 ## Additional Features to Consider (Beyond Slubly)
 
 ### Differentiators You Could Add
+
 1. **Live Streaming Integration**
+
    - Embed YouTube/Zoom for virtual attendance
    - Recorded ceremony viewing
 
 2. **Gift Registry Integration**
+
    - Link to Amazon, Target, etc.
    - Cash fund options (honeymoon fund)
 
 3. **Guest Communication**
+
    - Send mass emails/SMS to guests
    - Update notifications
 
 4. **Seating Chart Tool**
+
    - Visual table arrangement
    - Guest assignment
 
 5. **Wedding Day Timeline**
+
    - Detailed schedule for vendors
    - Timeline for guests
 
 6. **Vendor Directory**
+
    - Recommended photographers, caterers, etc.
    - Affiliate program potential
 
 7. **Photo Sharing by Guests**
+
    - Guests upload their photos from wedding
    - Shared gallery
 
 8. **QR Code Generator**
+
    - Easy sharing via printed materials
    - RSVP via QR code
 
 9. **Multi-Event Support**
+
    - Engagement party
    - Rehearsal dinner
    - Wedding ceremony
@@ -529,16 +577,18 @@ Logo | My Websites | Analytics | Subscription | Settings | Logout
 - **Database:** PostgreSQL (Supabase)
 - **Auth:** NextAuth.js or Clerk
 - **Payment:** Stripe
-- **Hosting:** Vercel
-- **Storage:** AWS S3 or Cloudflare R2
+- **Hosting:** CloudFlare
+- **Storage:** Cloudflare R2
 - **Email:** Resend or SendGrid
 
 **Estimated Development Time:**
+
 - MVP (Phase 1): 2-3 months
 - Full Platform (Phase 2): 4-6 months
 - Advanced Features (Phase 3): 6-12 months
 
 **Estimated Costs:**
+
 - Development (if solo): Time investment
 - Development (if hiring): $20k-50k for MVP
 - Monthly Operating Costs: $50-200/month initially
