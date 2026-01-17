@@ -130,6 +130,16 @@ CLOUDFLARE_AUTO_REBUILD=true
 
 ---
 
+## ⚠️ Ważne: Konflikt Next.js 16 z @cloudflare/next-on-pages
+
+Jeśli widzisz błąd `ERESOLVE could not resolve` podczas build:
+
+**Rozwiązanie:** Dodaj `.npmrc` z `legacy-peer-deps=true` do root projektu.
+
+Plik `.npmrc` został już utworzony i Cloudflare Pages automatycznie go użyje podczas instalacji zależności.
+
+---
+
 ## 🔍 Sprawdzenie Build Process
 
 Po skonfigurowaniu, sprawdź czy build działa:
