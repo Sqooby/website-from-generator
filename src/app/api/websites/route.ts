@@ -2,7 +2,9 @@ import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/db/prisma'
 import { z } from 'zod'
 
-export const runtime = 'edge'
+// Using Node.js runtime because Prisma with SQLite requires filesystem access
+// Edge Runtime doesn't support Node.js APIs like 'fs' and 'path'
+export const runtime = 'nodejs'
 
 // Validation schema
 const createWebsiteSchema = z.object({

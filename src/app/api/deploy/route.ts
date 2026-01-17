@@ -2,7 +2,8 @@ import { NextResponse } from 'next/server'
 import { deployToCloudflare } from '@/lib/cloudflare/deploy'
 import { z } from 'zod'
 
-export const runtime = 'edge'
+// Using Node.js runtime because deployToCloudflare may use Prisma
+export const runtime = 'nodejs'
 
 const deploySchema = z.object({
   websiteId: z.string(),

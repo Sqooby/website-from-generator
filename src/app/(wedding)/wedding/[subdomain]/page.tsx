@@ -3,7 +3,9 @@ import { prisma } from '@/lib/db/prisma'
 import { templateRegistry } from '@/templates/registry'
 import type { WebsiteContent } from '@/types'
 
-export const runtime = 'edge'
+// Using Node.js runtime because Prisma with SQLite requires filesystem access
+// Edge Runtime doesn't support Node.js APIs like 'fs' and 'path'
+export const runtime = 'nodejs'
 
 interface Props {
   params: Promise<{

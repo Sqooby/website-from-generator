@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/db/prisma'
 
-export const runtime = 'edge'
+// Using Node.js runtime because Prisma with SQLite requires filesystem access
+// Edge Runtime doesn't support Node.js APIs like 'fs' and 'path'
+export const runtime = 'nodejs'
 
 interface RouteParams {
   params: Promise<{
