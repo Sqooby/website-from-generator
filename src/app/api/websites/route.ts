@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/db/prisma'
 import { z } from 'zod'
 
+export const runtime = 'edge'
+
 // Validation schema
 const createWebsiteSchema = z.object({
   subdomain: z.string().min(3).max(50).regex(/^[a-z0-9-]+$/),

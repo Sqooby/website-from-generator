@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/db/prisma'
 import { z } from 'zod'
 
+export const runtime = 'edge'
+
 // Validation schema
 const rsvpSchema = z.object({
   subdomain: z.string(),

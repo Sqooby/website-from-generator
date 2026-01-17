@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 import { deployToCloudflare } from '@/lib/cloudflare/deploy'
 import { z } from 'zod'
 
+export const runtime = 'edge'
+
 const deploySchema = z.object({
   websiteId: z.string(),
 })

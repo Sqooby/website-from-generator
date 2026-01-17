@@ -3,6 +3,8 @@ import { prisma } from '@/lib/db/prisma'
 import { templateRegistry } from '@/templates/registry'
 import type { WebsiteContent } from '@/types'
 
+export const runtime = 'edge'
+
 interface Props {
   params: Promise<{
     subdomain: string

@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/db/prisma'
 
+export const runtime = 'edge'
+
 interface RouteParams {
   params: Promise<{
     id: string
