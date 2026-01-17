@@ -1,0 +1,98 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Website {
+  id        String   @id @default(cuid())
+  subdomain String   @unique
+  customDomain String?
+  templateId String
+  published Boolean  @default(false)
+  publishedAt DateTime?
+  deploymentUrl String?
+  deploymentId String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  content WebsiteContent?
+  photos  Photo[]
+  rsvps   RSVP[]
+}
+
+model WebsiteContent {
+  id         String   @id @default(cuid())
+  websiteId  String   @unique
+  website    Website  @relation(fields: [websiteId], references: [id], onDelete: Cascade)
+
+  // Couple Info
+  brideName    String
+  groomName    String
+  weddingDate  DateTime
+
+  // Theme Customization
+  primaryColor   String  @default("#8B7355")
+  secondaryColor String  @default("#F5F5DC")
+  accentColor    String?
+  fontFamily     String  @default("Playfair Display")
+
+  // Hero Section
+  heroImage    String?
+  heroTitle    String?
+  heroSubtitle String?
+
+  // Story Section
+  storyTitle   String?
+  storyContent String?
+  timeline     String? // JSON array of TimelineEvent[]
+
+  // Event Details
+  ceremonyVenue   String?
+  ceremonyTime    DateTime?
+  ceremonyAddress String?
+  ceremonyMapUrl  String?
+
+  receptionVenue   String?
+  receptionTime    DateTime?
+  receptionAddress String?
+  receptionMapUrl  String?
+
+  // Settings - stored as JSON
+  sections String // JSON object with boolean flags
+
+  // Additional Settings
+  settings String? // JSON object
+
+  updatedAt DateTime @updatedAt
+}
+
+model Photo {
+  id         String   @id @default(cuid())
+  websiteId  String
+  website    Website  @relation(fields: [websiteId], references: [id], onDelete: Cascade)
+  url        String
+  caption    String?
+  order      Int
+  uploadedAt DateTime @default(now())
+}
+
+model RSVP {
+  id                  String   @id @default(cuid())
+  websiteId           String
+  website             Website  @relation(fields: [websiteId], references: [id], onDelete: Cascade)
+  guestName           String
+  email               String
+  attending           Boolean
+  plusOne             Boolean  @default(false)
+  plusOneName         String?
+  dietaryRequirements String?
+  message             String?
+  createdAt           DateTime @default(now())
+}

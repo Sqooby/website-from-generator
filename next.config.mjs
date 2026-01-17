@@ -15,6 +15,8 @@ const nextConfig = {
       bodySizeLimit: '2mb',
     },
   },
+  // Note: @cloudflare/next-on-pages handles the build output conversion
+  // Do NOT use 'output: export' as it disables dynamic routing
 }
 
 export default nextConfig

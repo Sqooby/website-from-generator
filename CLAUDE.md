@@ -50,6 +50,7 @@ Renders: app/(wedding)/wedding/[subdomain]/page.tsx
 ```
 
 The middleware:
+
 - Detects subdomains from the `host` header
 - Excludes `www`, `localhost`, and the main domain
 - Rewrites subdomain requests to the `[subdomain]` dynamic route
@@ -87,6 +88,7 @@ The type system is **intentionally complete** - it matches the planned database 
 This project uses **Tailwind CSS v4** with its new PostCSS plugin:
 
 **PostCSS config** (`postcss.config.mjs`):
+
 ```javascript
 plugins: {
   '@tailwindcss/postcss': {},
@@ -94,6 +96,7 @@ plugins: {
 ```
 
 **Global styles** (`src/styles/globals.css`):
+
 ```css
 @import "tailwindcss";
 ```
@@ -109,7 +112,7 @@ If you need to modify Tailwind settings, use CSS `@theme` directives in `globals
 ```typescript
 // src/app/(public)/about/page.tsx
 export default function AboutPage() {
-  return <div>About content</div>
+  return <div>About content</div>;
 }
 ```
 
@@ -121,7 +124,7 @@ Automatically available at `/about` with header/footer from `(public)/layout.tsx
 // src/app/(dashboard)/dashboard/settings/page.tsx
 export default function SettingsPage() {
   // TODO: Add auth check when implemented
-  return <div>Settings</div>
+  return <div>Settings</div>;
 }
 ```
 
@@ -131,18 +134,18 @@ Available at `/dashboard/settings` with dashboard layout.
 
 ```typescript
 // src/app/api/photos/route.ts
-import { NextResponse } from 'next/server'
+import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
   // TODO: Fetch from database when connected
-  const photos = []
-  return NextResponse.json({ success: true, data: photos })
+  const photos = [];
+  return NextResponse.json({ success: true, data: photos });
 }
 
 export async function POST(request: Request) {
-  const body = await request.json()
+  const body = await request.json();
   // TODO: Validate and save to database
-  return NextResponse.json({ success: true, data: body }, { status: 201 })
+  return NextResponse.json({ success: true, data: body }, { status: 201 });
 }
 ```
 
@@ -156,8 +159,8 @@ Use the variant pattern from `button.tsx` for consistent styling:
 
 ```typescript
 interface Props {
-  variant?: 'default' | 'outline'
-  size?: 'sm' | 'md' | 'lg'
+  variant?: "default" | "outline";
+  size?: "sm" | "md" | "lg";
 }
 ```
 
@@ -166,6 +169,7 @@ interface Props {
 ### Server Components by Default
 
 All pages are Server Components unless you add `'use client'`. Only use client components when you need:
+
 - `useState`, `useEffect`, or other React hooks
 - Event handlers (`onClick`, `onChange`)
 - Browser APIs
@@ -177,15 +181,16 @@ All API routes follow this pattern:
 ```typescript
 return NextResponse.json({
   success: boolean,
-  data?: T,
-  error?: string,
-  message?: string
-})
+  data: T,
+  error: string,
+  message: string,
+});
 ```
 
 ### Wedding Site Rendering
 
 The wedding site page (`app/(wedding)/wedding/[subdomain]/page.tsx`):
+
 1. Receives subdomain from middleware rewrite
 2. Fetches website data by subdomain (currently mock function)
 3. Returns 404 if unpublished or not found
@@ -196,15 +201,17 @@ The wedding site page (`app/(wedding)/wedding/[subdomain]/page.tsx`):
 
 **Middleware:** `src/middleware.ts` - Subdomain routing logic
 **Types:** `src/types/index.ts` - Complete type system
-**Root Layout:** `src/app/layout.tsx` - Loads Google Fonts (Inter, Playfair Display)
+**Root Layout:** `src/app/layout.tsx` - Loads Google Fonts (Cormorant Garamond, Outfit)
 **Wedding Renderer:** `src/app/(wedding)/wedding/[subdomain]/page.tsx`
 
 **Configuration:**
+
 - `next.config.mjs` - Image optimization, server actions
 - `postcss.config.mjs` - Tailwind v4 PostCSS integration
 - `tsconfig.json` - Path aliases (`@/*` → `./src/*`), strict mode
 
 **Documentation:**
+
 - `README.md` - Project overview and setup
 - `ARCHITECTURE.md` - Deep dive into design decisions (534 lines)
 - `GETTING_STARTED.md` - Quick start guide
@@ -247,4 +254,3 @@ Apply dynamic styling (primaryColor, fontFamily)
 - **Tailwind v4** - Early adoption of CSS-based configuration
 
 When implementing database, auth, or payment features, refer to the detailed implementation guides in `_1spec/` which include complete code examples and schemas.
-- all md files put in _1spec folder

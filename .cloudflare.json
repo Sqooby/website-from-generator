@@ -1,0 +1,14 @@
+{
+  "pages": {
+    "build": {
+      "command": "npm run pages:build",
+      "cwd": ".",
+      "watch_dir": "."
+    },
+    "functions_config": {
+      "compatibility_date": "2024-01-01",
+      "compatibility_flags": ["nodejs_compat"]
+    }
+  }
+}
+

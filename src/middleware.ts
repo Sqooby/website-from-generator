@@ -11,11 +11,24 @@ export function middleware(request: NextRequest) {
   // Extract subdomain
   const subdomain = hostname.split('.')[0]
 
-  // Check if it's a subdomain (not www, not the main domain)
+  // Check if it's a localhost subdomain (e.g., dsa-das.localhost:3000)
+  const isLocalhostSubdomain = hostname.includes('.localhost')
+
+  // Check if it's a real subdomain (not www, not the main domain, not localhost)
   const isSubdomain = hostname !== mainDomain &&
                       subdomain !== 'www' &&
-                      !hostname.includes('localhost')
+                      !hostname.includes('localhost') &&
+                      !isLocalhostSubdomain
 
+  // Handle localhost subdomain for local development
+  if (isLocalhostSubdomain) {
+    const localhostSubdomain = hostname.split('.')[0]
+    return NextResponse.rewrite(
+      new URL(`/wedding/${localhostSubdomain}${pathname}`, request.url)
+    )
+  }
+
+  // Handle real subdomains (production)
   if (isSubdomain) {
     // Rewrite to wedding website route
     return NextResponse.rewrite(
