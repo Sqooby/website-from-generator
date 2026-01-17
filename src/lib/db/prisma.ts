@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3'
+import Database from 'better-sqlite3'
 import path from 'path'
 
 const globalForPrisma = globalThis as unknown as {
@@ -15,8 +16,11 @@ const absolutePath = path.isAbsolute(filePath)
   ? filePath
   : path.join(process.cwd(), filePath)
 
-// Create adapter with the absolute path URL
-const adapter = new PrismaBetterSqlite3({ url: absolutePath })
+// Create SQLite database instance
+const sqlite = new Database(absolutePath)
+
+// Create adapter with the Database instance
+const adapter = new PrismaBetterSqlite3(sqlite)
 
 export const prisma =
   globalForPrisma.prisma ??
