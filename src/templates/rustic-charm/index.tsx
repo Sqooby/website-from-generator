@@ -5,19 +5,21 @@ import { EventDetails } from '../base/sections/EventDetails'
 import { RSVP } from '../base/sections/RSVP'
 import { Gallery } from '../base/sections/Gallery'
 import { Footer } from '../base/sections/Footer'
+import { mergeContentTheme } from '../base/theme'
 import { rusticCharmConfig } from './config'
 import type { TemplateProps } from '../base/types'
 
 export function RusticCharm({ content, photos, rsvps }: TemplateProps) {
+  const config = mergeContentTheme(rusticCharmConfig, content)
   return (
     <div className="font-sans">
-      <Hero content={content} config={rusticCharmConfig} />
-      <Countdown content={content} config={rusticCharmConfig} />
-      <Story content={content} config={rusticCharmConfig} />
-      <EventDetails content={content} config={rusticCharmConfig} />
-      <Gallery content={content} config={rusticCharmConfig} photos={photos} />
-      <RSVP content={content} config={rusticCharmConfig} />
-      <Footer content={content} config={rusticCharmConfig} />
+      <Hero content={content} config={config} />
+      <Countdown content={content} config={config} />
+      <Story content={content} config={config} />
+      <EventDetails content={content} config={config} />
+      <Gallery content={content} config={config} photos={photos} />
+      <RSVP content={content} config={config} />
+      <Footer content={content} config={config} />
     </div>
   )
 }

@@ -1,11 +1,16 @@
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
+import { auth, signOut } from '@/lib/auth'
 import { Button } from '@/components/ui/button'
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const session = await auth()
+  if (!session) redirect('/login')
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Dashboard Header */}
@@ -37,7 +42,19 @@ export default function DashboardLayout({
           </nav>
 
           <div className="flex items-center gap-4">
-            <Button variant="ghost">Logout</Button>
+            <span className="text-sm text-gray-600 hidden md:block">
+              {session.user?.name || session.user?.email}
+            </span>
+            <form
+              action={async () => {
+                'use server'
+                await signOut({ redirectTo: '/login' })
+              }}
+            >
+              <Button type="submit" variant="ghost">
+                Wyloguj
+              </Button>
+            </form>
           </div>
         </div>
       </header>

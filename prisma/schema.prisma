@@ -9,6 +9,18 @@ datasource db {
   provider = "sqlite"
 }
 
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  name         String?
+  passwordHash String?   // null for OAuth users
+  image        String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  websites Website[]
+}
+
 model Website {
   id        String   @id @default(cuid())
   subdomain String   @unique
@@ -20,6 +32,10 @@ model Website {
   deploymentId String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  // Owner
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   // Relations
   content WebsiteContent?

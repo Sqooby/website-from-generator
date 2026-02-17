@@ -5,141 +5,183 @@ import { Label } from '@/components/ui/label'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
-interface ReviewPublishProps {
-  data: {
-    brideName: string
-    groomName: string
-    weddingDate: string
-    subdomain?: string
+interface FormData {
+  brideName: string
+  groomName: string
+  weddingDate: string
+  storyTitle: string
+  storyContent: string
+  ceremonyVenue: string
+  ceremonyAddress: string
+  receptionVenue: string
+  receptionAddress: string
+  primaryColor: string
+  secondaryColor: string
+  accentColor: string
+  sections: {
+    hero: boolean
+    countdown: boolean
+    story: boolean
+    events: boolean
+    rsvp: boolean
+    gallery: boolean
+    travel: boolean
+    faq: boolean
   }
+}
+
+interface ReviewPublishProps {
+  data: FormData
   templateId: string
-  onUpdate: (data: any) => void
+  onUpdate: (data: Partial<FormData>) => void
   onBack: () => void
 }
 
 export function ReviewPublish({ data, templateId, onUpdate, onBack }: ReviewPublishProps) {
   const router = useRouter()
   const [subdomain, setSubdomain] = useState(
-    data.subdomain ||
-      `${data.brideName.toLowerCase()}-${data.groomName.toLowerCase()}`.replace(/\s+/g, '')
+    `${data.brideName.toLowerCase()}-${data.groomName.toLowerCase()}`.replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
   )
   const [isPublishing, setIsPublishing] = useState(false)
   const [error, setError] = useState('')
 
   const handleSubdomainChange = (value: string) => {
-    // Allow only lowercase letters, numbers, and hyphens
     const cleaned = value.toLowerCase().replace(/[^a-z0-9-]/g, '')
     setSubdomain(cleaned)
-    onUpdate({ ...data, subdomain: cleaned })
   }
 
   const handlePublish = async () => {
+    if (!subdomain) {
+      setError('Subdomena jest wymagana')
+      return
+    }
+
     setIsPublishing(true)
     setError('')
 
     try {
-      // Step 1: Create website in database (as draft - published: false)
-      const response = await fetch('/api/websites', {
+      // Krok 1: Utwórz stronę w bazie (szkic)
+      const createRes = await fetch('/api/websites', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           subdomain,
           templateId,
-          ...data,
+          brideName: data.brideName,
+          groomName: data.groomName,
+          weddingDate: data.weddingDate,
+          primaryColor: data.primaryColor,
+          secondaryColor: data.secondaryColor,
+          accentColor: data.accentColor,
+          storyTitle: data.storyTitle || undefined,
+          storyContent: data.storyContent || undefined,
+          ceremonyVenue: data.ceremonyVenue || undefined,
+          ceremonyAddress: data.ceremonyAddress || undefined,
+          receptionVenue: data.receptionVenue || undefined,
+          receptionAddress: data.receptionAddress || undefined,
+          sections: data.sections,
         }),
       })
 
-      if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.error || 'Failed to create website')
+      if (!createRes.ok) {
+        const errorData = await createRes.json()
+        throw new Error(errorData.error || 'Nie udało się utworzyć strony')
       }
 
-      const { data: website } = await response.json()
+      const { data: website } = await createRes.json()
 
-      // Step 2: Publish website (set published: true)
-      // Dynamic routing will automatically handle subdomain → /wedding/[subdomain]
-      const publishResponse = await fetch(`/api/websites/${website.id}`, {
+      // Krok 2: Opublikuj stronę
+      const publishRes = await fetch(`/api/websites/${website.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ published: true }),
       })
 
-      if (!publishResponse.ok) {
-        throw new Error('Failed to publish website')
+      if (!publishRes.ok) {
+        throw new Error('Nie udało się opublikować strony')
       }
 
-      // Step 3: Generate website URL (dynamic routing handles this automatically)
-      // Extract main domain from current hostname
+      // Krok 3: Przekieruj na stronę sukcesu
       const hostname = window.location.hostname
       const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1'
-      const mainDomain = isLocalhost 
-        ? hostname + (window.location.port ? `:${window.location.port}` : '')
-        : hostname.split('.').slice(-2).join('.') // Get domain.com from subdomain.domain.com
-      
-      const protocol = isLocalhost ? 'http' : 'https'
-      const websiteUrl = `${protocol}://${subdomain}.${mainDomain}`
+      const port = window.location.port
+      const websiteUrl = isLocalhost
+        ? `http://${subdomain}.localhost${port ? ':' + port : ''}`
+        : `https://${subdomain}.${hostname.split('.').slice(-2).join('.')}`
 
-      // Redirect to success page
-      router.push(`/builder/success?url=${encodeURIComponent(websiteUrl)}`)
-    } catch (err: any) {
-      setError(err.message)
+      router.push(`/builder/success?url=${encodeURIComponent(websiteUrl)}&subdomain=${encodeURIComponent(subdomain)}`)
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Wystąpił błąd')
       setIsPublishing(false)
     }
   }
+
+  const templateLabel = templateId
+    .split('-')
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ')
 
   return (
     <div className="space-y-8">
       <div className="text-center">
         <h2 className="text-3xl font-bold text-stone-900 mb-2">
-          Review & Publish
+          Przegląd i publikacja
         </h2>
         <p className="text-stone-600">
-          Almost there! Let's publish your wedding website
+          Prawie gotowe! Opublikujmy Twoją stronę weselną
         </p>
       </div>
 
       <div className="max-w-2xl mx-auto space-y-6">
-        {/* Summary */}
+        {/* Podsumowanie */}
         <div className="bg-white p-6 rounded-lg border border-stone-200">
-          <h3 className="font-semibold text-lg mb-4">Website Summary</h3>
+          <h3 className="font-semibold text-lg mb-4">Podsumowanie</h3>
           <dl className="space-y-3">
             <div className="flex justify-between">
-              <dt className="text-stone-600">Couple:</dt>
+              <dt className="text-stone-600">Para:</dt>
               <dd className="font-medium">{data.brideName} & {data.groomName}</dd>
             </div>
             <div className="flex justify-between">
-              <dt className="text-stone-600">Wedding Date:</dt>
+              <dt className="text-stone-600">Data ślubu:</dt>
               <dd className="font-medium">
-                {new Date(data.weddingDate).toLocaleDateString('en-US', {
-                  month: 'long',
-                  day: 'numeric',
-                  year: 'numeric',
-                })}
+                {data.weddingDate
+                  ? new Date(data.weddingDate).toLocaleDateString('pl-PL', {
+                      day: 'numeric',
+                      month: 'long',
+                      year: 'numeric',
+                    })
+                  : '—'}
               </dd>
             </div>
             <div className="flex justify-between">
-              <dt className="text-stone-600">Template:</dt>
-              <dd className="font-medium capitalize">{templateId.replace('-', ' ')}</dd>
+              <dt className="text-stone-600">Szablon:</dt>
+              <dd className="font-medium">{templateLabel}</dd>
             </div>
+            {data.ceremonyVenue && (
+              <div className="flex justify-between">
+                <dt className="text-stone-600">Ceremonia:</dt>
+                <dd className="font-medium">{data.ceremonyVenue}</dd>
+              </div>
+            )}
           </dl>
         </div>
 
-        {/* Subdomain */}
+        {/* Subdomena */}
         <div className="bg-white p-6 rounded-lg border border-stone-200 space-y-4">
-          <h3 className="font-semibold text-lg">Your Website URL</h3>
+          <h3 className="font-semibold text-lg">Adres Twojej strony</h3>
           <div>
-            <Label required>Subdomain</Label>
+            <Label required>Subdomena</Label>
             <div className="flex items-center gap-2">
               <Input
                 value={subdomain}
                 onChange={(e) => handleSubdomainChange(e.target.value)}
-                placeholder="john-mary"
+                placeholder="jan-anna"
                 required
               />
               <span className="text-stone-600 whitespace-nowrap">.yoursite.com</span>
             </div>
             <p className="text-xs text-stone-500 mt-1">
-              Only lowercase letters, numbers, and hyphens allowed
+              Tylko małe litery, cyfry i myślniki
             </p>
           </div>
 
@@ -156,7 +198,7 @@ export function ReviewPublish({ data, templateId, onUpdate, onBack }: ReviewPubl
             disabled={isPublishing}
             className="px-8 py-3 border border-stone-300 text-stone-700 font-semibold rounded-lg hover:bg-stone-50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Back
+            Wstecz
           </button>
           <button
             onClick={handlePublish}
@@ -169,10 +211,10 @@ export function ReviewPublish({ data, templateId, onUpdate, onBack }: ReviewPubl
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                 </svg>
-                Publishing...
+                Publikowanie...
               </>
             ) : (
-              'Publish Website'
+              'Opublikuj stronę'
             )}
           </button>
         </div>

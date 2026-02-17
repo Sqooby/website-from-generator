@@ -13,8 +13,6 @@ interface TimeLeft {
 export function Countdown({ content, config }: SectionProps) {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null)
 
-  if (!content.sections || !(content.sections as any).countdown) return null
-
   useEffect(() => {
     const calculateTimeLeft = (): TimeLeft => {
       const weddingDate = new Date(content.weddingDate).getTime()
@@ -42,6 +40,7 @@ export function Countdown({ content, config }: SectionProps) {
     return () => clearInterval(timer)
   }, [content.weddingDate])
 
+  if (!content.sections || !(content.sections as any).countdown) return null
   if (!timeLeft) return null
 
   const timeUnits = [

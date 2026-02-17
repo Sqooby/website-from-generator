@@ -22,7 +22,9 @@ export function PreviewFrame({ templateId, content }: PreviewFrameProps) {
   const Template = template.component
 
   // Fill in default values for incomplete data
-  const defaultContent: WebsiteContent = {
+  // Spread content first so extra fields (storyImage, storyLayout, storyBlocks, etc.) pass through
+  const defaultContent = {
+    ...content,
     id: 'preview',
     websiteId: 'preview',
     brideName: content.brideName || 'Jane',
@@ -56,7 +58,7 @@ export function PreviewFrame({ templateId, content }: PreviewFrameProps) {
       faq: false,
     },
     updatedAt: new Date(),
-  }
+  } as WebsiteContent & Record<string, unknown>
 
   return (
     <div className="w-full h-full overflow-auto bg-white rounded-lg shadow-lg border border-stone-200">

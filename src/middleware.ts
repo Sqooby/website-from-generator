@@ -1,26 +1,35 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
+import NextAuth from 'next-auth'
+import { authConfig } from '@/lib/auth.config'
+import { config as appConfig } from '@/lib/config/env'
 
-export function middleware(request: NextRequest) {
+/**
+ * Middleware runs in Edge Runtime - must only use Edge-compatible imports.
+ * Uses authConfig (no bcrypt/prisma/fs) instead of full auth.ts.
+ */
+const { auth } = NextAuth(authConfig)
+
+export default auth(function middleware(request: NextRequest) {
   const hostname = request.headers.get('host') || ''
   const { pathname } = request.nextUrl
+  const isAuthenticated = !!(request as NextRequest & { auth?: unknown }).auth
 
-  // Get the main domain from environment
-  const mainDomain = process.env.NEXT_PUBLIC_MAIN_DOMAIN || 'localhost:3000'
+  // Redirect logged-in users away from auth pages
+  if ((pathname === '/login' || pathname === '/register') && isAuthenticated) {
+    return NextResponse.redirect(new URL('/dashboard', request.url))
+  }
 
-  // Extract subdomain
+  // Subdomain routing
+  const mainDomain = appConfig.app.mainDomain
   const subdomain = hostname.split('.')[0]
-
-  // Check if it's a localhost subdomain (e.g., dsa-das.localhost:3000)
   const isLocalhostSubdomain = hostname.includes('.localhost')
+  const isSubdomain =
+    hostname !== mainDomain &&
+    subdomain !== 'www' &&
+    !hostname.includes('localhost') &&
+    !isLocalhostSubdomain
 
-  // Check if it's a real subdomain (not www, not the main domain, not localhost)
-  const isSubdomain = hostname !== mainDomain &&
-                      subdomain !== 'www' &&
-                      !hostname.includes('localhost') &&
-                      !isLocalhostSubdomain
-
-  // Handle localhost subdomain for local development
   if (isLocalhostSubdomain) {
     const localhostSubdomain = hostname.split('.')[0]
     return NextResponse.rewrite(
@@ -28,31 +37,17 @@ export function middleware(request: NextRequest) {
     )
   }
 
-  // Handle real subdomains (production)
   if (isSubdomain) {
-    // Rewrite to wedding website route
     return NextResponse.rewrite(
       new URL(`/wedding/${subdomain}${pathname}`, request.url)
     )
   }
 
-  // Handle custom domains (TODO: implement later)
-  // You would check if the hostname is a custom domain in your database
-  // and rewrite accordingly
-
   return NextResponse.next()
-}
+})
 
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - images (public images)
-     * - favicon.ico (favicon file)
-     */
     '/((?!api|_next/static|_next/image|images|favicon.ico).*)',
   ],
 }

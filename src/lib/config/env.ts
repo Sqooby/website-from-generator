@@ -10,6 +10,14 @@ export const config = {
       (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null) ||
       'http://localhost:3000',
   },
+  auth: {
+    secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET,
+    url: process.env.NEXTAUTH_URL || 'http://localhost:3000',
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    },
+  },
   cloudflare: {
     apiToken: process.env.CLOUDFLARE_API_TOKEN,
     accountId: process.env.CLOUDFLARE_ACCOUNT_ID,

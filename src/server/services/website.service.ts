@@ -22,6 +22,13 @@ export class WebsiteNotFoundError extends Error {
   }
 }
 
+export class ForbiddenError extends Error {
+  constructor() {
+    super('You do not have access to this website')
+    this.name = 'ForbiddenError'
+  }
+}
+
 const DEFAULT_SECTIONS = {
   hero: true,
   countdown: true,
@@ -34,21 +41,23 @@ const DEFAULT_SECTIONS = {
 }
 
 export const websiteService = {
-  async listWebsites() {
-    return websiteRepository.findAll()
+  async listWebsites(userId: string) {
+    return websiteRepository.findAll(userId)
   },
 
-  async getWebsite(id: string) {
+  async getWebsite(id: string, userId: string) {
     const website = await websiteRepository.findById(id)
     if (!website) throw new WebsiteNotFoundError(id)
+    if (website.userId !== userId) throw new ForbiddenError()
     return website
   },
 
-  async createWebsite(input: CreateWebsiteInput) {
+  async createWebsite(input: CreateWebsiteInput, userId: string) {
     const taken = await websiteRepository.existsBySubdomain(input.subdomain)
     if (taken) throw new SubdomainTakenError(input.subdomain)
 
     return websiteRepository.create({
+      userId,
       subdomain: input.subdomain,
       templateId: input.templateId,
       content: {
@@ -70,20 +79,24 @@ export const websiteService = {
     })
   },
 
-  async updateWebsite(id: string, input: UpdateWebsiteInput) {
-    const website = await websiteRepository.update(id, {
+  async updateWebsite(id: string, input: UpdateWebsiteInput, userId: string) {
+    const existing = await websiteRepository.findById(id)
+    if (!existing) throw new WebsiteNotFoundError(id)
+    if (existing.userId !== userId) throw new ForbiddenError()
+
+    return websiteRepository.update(id, {
       ...(input.published !== undefined && {
         published: input.published,
         publishedAt: input.published ? new Date() : null,
       }),
       ...(input.templateId && { templateId: input.templateId }),
     })
-    return website
   },
 
-  async deleteWebsite(id: string) {
-    const exists = await websiteRepository.findById(id)
-    if (!exists) throw new WebsiteNotFoundError(id)
+  async deleteWebsite(id: string, userId: string) {
+    const existing = await websiteRepository.findById(id)
+    if (!existing) throw new WebsiteNotFoundError(id)
+    if (existing.userId !== userId) throw new ForbiddenError()
     return websiteRepository.delete(id)
   },
 

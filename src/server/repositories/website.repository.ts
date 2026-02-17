@@ -7,6 +7,7 @@
 import { prisma } from '@/lib/db/prisma'
 
 export type CreateWebsiteData = {
+  userId: string
   subdomain: string
   templateId: string
   content: {
@@ -36,8 +37,9 @@ export type UpdateWebsiteData = {
 }
 
 export const websiteRepository = {
-  async findAll() {
+  async findAll(userId: string) {
     return prisma.website.findMany({
+      where: { userId },
       include: { content: true },
       orderBy: { createdAt: 'desc' },
     })
@@ -75,6 +77,7 @@ export const websiteRepository = {
   async create(data: CreateWebsiteData) {
     return prisma.website.create({
       data: {
+        userId: data.userId,
         subdomain: data.subdomain,
         templateId: data.templateId,
         published: false,

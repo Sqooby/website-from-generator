@@ -44,6 +44,10 @@ export interface WebsiteContent {
   // Story Section
   storyTitle?: string
   storyContent?: string
+  storyImage?: string
+  storyLayout?: 'text-only' | 'image-left' | 'image-right' | 'image-top'
+  /** When set, story is rendered as blocks (paragraph + optional image per block); otherwise uses storyContent + storyImage */
+  storyBlocks?: StoryBlock[]
   timeline?: TimelineEvent[]
 
   // Event Details
@@ -73,6 +77,13 @@ export interface WebsiteContent {
   settings?: Record<string, any>
 
   updatedAt: Date
+}
+
+export interface StoryBlock {
+  id: string
+  text: string
+  image?: string
+  layout: 'text-only' | 'image-left' | 'image-right'
 }
 
 export interface TimelineEvent {
