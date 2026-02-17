@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server'
-import { deployToCloudflare } from '@/lib/cloudflare/deploy'
 import { z } from 'zod'
+import { deployToCloudflare } from '@/lib/cloudflare/deploy'
 
-// Using Node.js runtime because deployToCloudflare may use Prisma
+// Using Node.js runtime because Prisma with SQLite requires filesystem access
 export const runtime = 'nodejs'
 
 const deploySchema = z.object({
@@ -13,20 +13,18 @@ export async function POST(request: Request) {
   try {
     const body = await request.json()
     const { websiteId } = deploySchema.parse(body)
-
     const result = await deployToCloudflare(websiteId)
-
-    return NextResponse.json({
-      success: true,
-      data: result,
-    })
-  } catch (error: any) {
+    return NextResponse.json({ success: true, data: result })
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json(
+        { success: false, error: 'Invalid input', details: error.issues },
+        { status: 400 }
+      )
+    }
     console.error('Deployment error:', error)
     return NextResponse.json(
-      {
-        success: false,
-        error: error.message || 'Failed to deploy website',
-      },
+      { success: false, error: error instanceof Error ? error.message : 'Failed to deploy website' },
       { status: 500 }
     )
   }

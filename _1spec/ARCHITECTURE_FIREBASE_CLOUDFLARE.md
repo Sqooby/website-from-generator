@@ -343,3 +343,4 @@ npx wrangler pages deploy .next
 
 **Bottom line:** Nie przepisuj backendu jeśli nie musisz. Prisma + PostgreSQL + Cloudflare to solidne, skalowalne rozwiązanie.
 
+

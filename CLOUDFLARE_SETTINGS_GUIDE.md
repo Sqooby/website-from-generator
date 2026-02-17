@@ -224,3 +224,4 @@ NEXT_PUBLIC_MAIN_DOMAIN=yourdomain.com
 4. ✅ Zapisz i uruchom nowy deployment
 5. ✅ Gotowe! 🎉
 
+

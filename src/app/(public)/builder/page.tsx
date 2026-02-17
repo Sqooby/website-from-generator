@@ -1,4 +1,4 @@
-import { WeddingBuilder } from '@/components/builder/wedding-builder'
+import { WeddingBuilder } from '@/components/features/builder/wedding-builder'
 
 export default function BuilderPage() {
   return <WeddingBuilder />

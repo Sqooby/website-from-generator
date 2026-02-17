@@ -122,3 +122,4 @@ DATABASE_URL=postgresql://...
 
 **Auto-rebuild = opcjonalne, tylko gdy zmieniasz kod aplikacji**
 
+

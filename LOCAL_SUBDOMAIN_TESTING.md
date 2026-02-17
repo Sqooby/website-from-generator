@@ -89,3 +89,4 @@ if (isSubdomain || isLocalhostSubdomain) {
 
 Ale to nie jest konieczne - `/wedding/[subdomain]` działa bezpośrednio! 🎉
 
+
